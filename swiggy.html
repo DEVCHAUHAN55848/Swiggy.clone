@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Swiggy – Order food & groceries</title>
+<style>
+:root{--orange:#fc5200;--dark:#1b1e24;--text:#3d4152;--muted:#7e808c;--green:#1ba672;--mint:#c8f5dc;--border:#e2e2e7;--footer:#f0f0f5}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Poppins","Segoe UI",Arial,sans-serif;color:var(--text);background:#fff}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+
+/* HERO */
+.hero{background:var(--orange);color:#fff;padding-bottom:40px;position:relative;overflow:hidden}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+.logo{display:flex;align-items:center;gap:8px;font-weight:700;font-size:22px}
+.logo i{background:#fff;color:var(--orange);width:32px;height:32px;border-radius:9px;display:grid;place-items:center;font-style:normal;font-size:18px}
+.nav-links{display:flex;align-items:center;gap:22px;font-size:13px;font-weight:600}
+.btn-outline{border:1px solid #fff;border-radius:12px;padding:12px 18px}
+.btn-black{background:#000;border-radius:12px;padding:13px 26px}
+.hero h1{text-align:center;font-size:clamp(24px,4vw,34px);line-height:1.3;max-width:560px;margin:34px auto 26px}
+.search{display:flex;gap:12px;max-width:620px;margin:0 auto 34px}
+.search>*{background:#fff;border:0;border-radius:10px;padding:14px 16px;font:inherit;font-size:13px;color:var(--muted)}
+.search .loc{flex:0 0 38%}
+.search .q{flex:1}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:800px;margin:0 auto}
+.card{background:#fff;color:var(--text);border-radius:22px;padding:20px;min-height:190px;position:relative;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.card h3{font-size:20px;font-weight:800;letter-spacing:.2px}
+.card p{font-size:13px;color:var(--muted);font-weight:500;margin-top:2px}
+.tag{display:inline-block;margin-top:10px;font-size:11px;font-weight:700;color:var(--orange);background:#fff1ea;padding:3px 8px;border-radius:6px}
+.go{position:absolute;left:18px;bottom:18px;width:34px;height:34px;border-radius:50%;background:var(--orange);color:#fff;display:grid;place-items:center;font-size:18px}
+.card .pic{position:absolute;right:14px;bottom:10px;font-size:64px}
+
+/* SECTIONS */
+section{padding:34px 0 8px}
+.sec-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.sec-head h2{font-size:15px;font-weight:600;color:#02060c}
+.arrows button{width:26px;height:26px;border-radius:50%;border:0;background:#e9e9ee;margin-left:8px;cursor:pointer;color:#555}
+.foods{display:grid;grid-template-columns:repeat(7,1fr);gap:22px 12px;text-align:center;font-size:12px}
+.foods .ic{font-size:44px;display:block;margin-bottom:6px;filter:drop-shadow(0 6px 6px rgba(0,0,0,.18))}
+.groceries{display:grid;grid-template-columns:repeat(7,1fr);gap:14px;text-align:center;font-size:12px;font-weight:600}
+.groceries .box{background:#f3f3f6;border-radius:12px;height:78px;display:grid;place-items:center;font-size:40px;margin-bottom:8px}
+
+/* DINEOUT */
+.dine{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.rest{border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.1);font-size:10px;background:#fff}
+.rest .img{height:100px;display:flex;align-items:flex-end;justify-content:space-between;padding:8px;color:#fff;font-size:13px;font-weight:700}
+.rest .img span:last-child{font-size:11px}
+.rest .row{display:flex;justify-content:space-between;color:var(--muted);padding:8px 8px 0}
+.offer{margin:8px;background:var(--green);color:#fff;border-radius:6px;padding:6px 8px;font-weight:600;display:flex;justify-content:space-between}
+.bank{margin:0 8px 8px;background:var(--mint);color:#1b6b4c;border-radius:6px;padding:7px 8px;font-weight:500}
+.code{display:block;padding:0 8px 10px;color:#4b3bb5}
+
+/* APP BANNER */
+.app{margin:34px 0;background:var(--dark);color:#fff;border-radius:6px;padding:40px 60px;display:flex;justify-content:space-between;align-items:center;gap:20px}
+.app h2{font-size:24px;margin:8px 0}
+.app p{font-size:11px;color:#8b8f98}
+.qr{background:#fff;border-radius:18px;padding:14px;text-align:center;color:var(--orange);font-size:10px;font-weight:700}
+.qr b{display:block;width:90px;height:90px;margin-bottom:6px;background:
+ conic-gradient(#000 25%,#fff 0 50%,#000 0 75%,#fff 0) 0 0/18px 18px}
+
+/* CITIES */
+.cities{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.cities a{border:1px solid var(--border);border-radius:10px;padding:14px 8px;text-align:center;font-size:11px;font-weight:500}
+.cities a.more{color:var(--orange);font-weight:700}
+
+/* FOOTER */
+footer{background:var(--footer);margin-top:50px;padding:36px 0 34px;font-size:12px}
+.fcols{display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr 1fr;gap:20px}
+.fcols h4{font-size:13px;color:#02060c;margin-bottom:14px}
+.fcols li{list-style:none;margin-bottom:12px;color:var(--muted)}
+.fcols .logo{color:var(--orange)}
+.fcols .logo i{background:var(--orange);color:#fff}
+.dl{margin-top:30px;padding-top:26px;border-top:1px solid #c9c9d3;display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;font-weight:600;font-size:15px;color:#02060c}
+.store{background:#000;color:#fff;border-radius:10px;padding:8px 16px;font-size:15px;border:1px solid #888}
+.store small{display:block;font-size:8px}
+
+@media(max-width:800px){
+ .nav-links a:not(.btn-black){display:none}
+ .cards,.cities{grid-template-columns:1fr 1fr}
+ .foods,.groceries{grid-template-columns:repeat(4,1fr)}
+ .dine{grid-template-columns:1fr 1fr}
+ .app{flex-direction:column;padding:28px}
+ .fcols{grid-template-columns:1fr 1fr}
+ .search{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav">
+      <a class="logo" href="#"><i>🧡</i>Swiggy</a>
+      <div class="nav-links">
+        <a href="#">Swiggy Corporate</a>
+        <a href="#">Partner with us</a>
+        <a class="btn-outline" href="#">Get the App ↗</a>
+        <a class="btn-black" href="#">Sign in</a>
+      </div>
+    </nav>
+    <h1>Order food &amp; groceries. Discover best restaurants. Swiggy it!</h1>
+    <div class="search">
+      <input class="loc" placeholder="Enter your delivery location" aria-label="Delivery location">
+      <input class="q" placeholder="Search for restaurant, item or more" aria-label="Search">
+    </div>
+    <div class="cards">
+      <a class="card" href="#"><h3>FOOD DELIVERY</h3><p>FROM RESTAURANTS</p><span class="tag">UPTO 60% OFF</span><span class="pic">🍳</span><span class="go">→</span></a>
+      <a class="card" href="#"><h3>INSTAMART</h3><p>INSTANT GROCERY</p><span class="tag">UPTO 60% OFF</span><span class="pic">🧺</span><span class="go">→</span></a>
+      <a class="card" href="#"><h3>DINEOUT</h3><p>EAT OUT &amp; SAVE MORE</p><span class="tag">UPTO 50% OFF</span><span class="pic">🍽️</span><span class="go">→</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <div class="sec-head"><h2>Order our best food options</h2><div class="arrows"><button aria-label="Previous">←</button><button aria-label="Next">→</button></div></div>
+    <div class="foods" id="foods"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Shop groceries on Instamart</h2><div class="arrows"><button aria-label="Previous">←</button><button aria-label="Next">→</button></div></div>
+    <div class="groceries" id="groceries"></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><h2>Discover best restaurants on Dineout</h2><div class="arrows"><button aria-label="Previous">←</button><button aria-label="Next">→</button></div></div>
+    <div class="dine" id="dine"></div>
+  </section>
+
+  <div class="app">
+    <div>
+      <a class="logo" href="#" style="font-size:12px"><i style="width:18px;height:18px;font-size:10px;border-radius:5px">🧡</i>Swiggy</a>
+      <h2>Get the Swiggy App now!</h2>
+      <p>For best offers and discounts curated specially for you.</p>
+    </div>
+    <div class="qr"><b></b>Scan to download</div>
+  </div>
+
+  <section style="padding-top:0">
+    <div class="sec-head"><h2>Cities with food delivery</h2></div>
+    <div class="cities" id="cities"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fcols">
+      <div><a class="logo" href="#"><i>🧡</i>Swiggy</a><p style="margin-top:8px;color:var(--muted);font-size:11px">© 2026 Swiggy Limited</p></div>
+      <div><h4>Company</h4><ul><li>About Us</li><li>Swiggy Corporate</li><li>Careers</li><li>Team</li><li>Swiggy One</li><li>Swiggy Instamart</li></ul></div>
+      <div><h4>Contact us</h4><ul><li>Help &amp; Support</li><li>Partner With Us</li><li>Ride With Us</li></ul><h4 style="margin-top:22px">Legal</h4><ul><li>Terms &amp; Conditions</li><li>Cookie Policy</li><li>Privacy Policy</li></ul></div>
+      <div><h4>Available in:</h4><ul><li>Bangalore</li><li>Gurgaon</li><li>Hyderabad</li><li>Delhi</li><li>Mumbai</li><li>Pune</li></ul></div>
+      <div><h4>Life at Swiggy</h4><ul><li>Explore With Swiggy</li><li>Swiggy News</li><li>Snackables</li></ul><h4 style="margin-top:22px">Social Links</h4><p style="color:var(--muted)">in &nbsp; ◎ &nbsp; f &nbsp; ℗ &nbsp; t</p></div>
+    </div>
+    <div class="dl">
+      <span>For better experience, download the Swiggy app now</span>
+      <a class="store" href="#"><small>Download on the</small>App Store</a>
+      <a class="store" href="#"><small>GET IT ON</small>Google Play</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const foods=[["🍛","North Indian"],["🍕","Pizza"],["🍔","Burger"],["🍰","Cake"],["🍲","Biryani"],["🌯","Rolls"],["🧇","Desserts"],["🥘","South Indian"],["🫓","Paratha"],["🍝","Pasta"],["🍨","Ice Cream"],["🍫","Pastry"],["🥣","Rasmalai"],["☕","Coffee"]];
+const groceries=[["🥦","Fresh Vegetables"],["🥑","Fresh Fruits"],["🍞","Dairy, Bread and Eggs"],["🌾","Rice, Atta and Dals"],["🌶️","Masalas and Dry Fruits"],["🧈","Oils and Ghee"],["🍟","Munchies"]];
+const dine=[["Rolls Mania","3.5","Rolls • Beverages","₹300 for two","#c0392b"],["The Yellow Chilli","4.3","North Indian • Kebab","₹1500 for two","#b9722f"],["Jain Shudh Bhojnalya","4.0","North Indian • Italian","₹500 for two","#8a6a3a"],["Giani's","4.0","Ice Cream • Beverages","₹400 for two","#d4202a"]];
+const cities=["Bangalore","Gurgaon","Hyderabad","Delhi","Mumbai","Pune","Kolkata","Chennai","Ahmedabad","Chandigarh","Jaipur"];
+
+document.getElementById("foods").innerHTML=foods.map(f=>`<div><span class="ic">${f[0]}</span>${f[1]}</div>`).join("");
+document.getElementById("groceries").innerHTML=groceries.map(g=>`<div><div class="box">${g[0]}</div>${g[1]}</div>`).join("");
+document.getElementById("dine").innerHTML=dine.map(d=>`
+ <div class="rest">
+  <div class="img" style="background:${d[4]}"><span>${d[0]}</span><span>★ ${d[1]}</span></div>
+  <div class="row"><span>${d[2]}</span><span>${d[3]}</span></div>
+  <div class="offer"><span>Flat 30% off on pre-booking</span><span>+ 4 more</span></div>
+  <div class="bank">Up to 10% off with bank offers</div>
+  <span class="code">Get extra ₹125 off using PAYTMNEW</span>
+ </div>`).join("");
+document.getElementById("cities").innerHTML=cities.map(c=>`<a href="#">Order food online in ${c}</a>`).join("")+`<a class="more" href="#">Show More ⌄</a>`;
+</script>
+</body>
+</html>
